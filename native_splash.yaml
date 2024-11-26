@@ -1,0 +1,21 @@
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/png/flutter_logo.png
+  branding: assets/png/flutter_logo.png
+  color_dark: "#121212"
+  image_dark: assets/png/flutter_logo.png
+  branding_dark: assets/png/flutter_logo.png
+
+  android_12:
+    image: assets/png/flutter_logo.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/png/flutter_logo.png
+    icon_background_color_dark: "#121212"
+
+  web: false
+# to add the flutter native splash run
+#?  dart run flutter_native_splash:create -- path=native_splash.yaml
+
+#to remove the flutter native splash run
+#?  dart run flutter_native_splash:remove

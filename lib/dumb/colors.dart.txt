@@ -1,0 +1,75 @@
+
+  // Primary color scheme
+  static const Color primaryColor =
+      Color(0xFF37474F); // Dark blue-grey, good for app bars and headers
+  static const Color secondaryColor =
+      Color(0xFFCDDC39); // Lime green, for accents and highlights
+  static const Color accentColor =
+      Color(0xFFC62828); // Red, for calls to action and important elements
+
+  // Text colors
+  static const Color textPrimary =
+      Color(0xFF212121); // Dark grey, for primary text on light backgrounds
+  static const Color textSecondary =
+      Color(0xFF757575); // Grey, for secondary text and subtitles
+  static const Color textOnDark =
+      Color(0xFFFFFFFF); // White, for text on dark backgrounds
+  static const Color textOnAccent =
+      Color(0xFFFFFFFF); // White, for text on accent color
+
+  // Background colors
+  static const Color backgroundLight =
+      Color(0xFFF5F5F5); // Light grey, for light themes
+  static const Color backgroundDark =
+      Color(0xFF263238); // Dark blue-grey, for dark themes
+  static const Color primaryBackground =
+      Color(0xFFFFFFFF); // White, default background for content areas
+
+  // Container colors
+  static const Color containerLight =
+      Color(0xFFFFFFFF); // White, for cards and sheets
+  static const Color containerDark =
+      Color(0xFF37474F); // Dark blue-grey, for cards and sheets in dark theme
+
+  // Button colors
+  static const Color buttonPrimary =
+      Color(0xFFC62828); // Red, for primary buttons
+  static const Color buttonSecondary =
+      Color(0xFFCDDC39); // Lime green, for secondary buttons
+  static const Color buttonDisabled =
+      Color(0xFFBDBDBD); // Grey, for disabled buttons
+
+  // Border colors
+  static const Color borderLight =
+      Color(0xFFBDBDBD); // Grey, for borders in light theme
+  static const Color borderDark =
+      Color(0xFF37474F); // Dark blue-grey, for borders in dark theme
+
+  // Error and Validation colors
+  static const Color error =
+      Color(0xFFD32F2F); // Dark red, for error messages and icons
+  static const Color success =
+      Color(0xFF4CAF50); // Green, for success messages and icons
+  static const Color warning =
+      Color(0xFFFFC107); // Amber, for warning messages and icons
+  static const Color info =
+      Color(0xFF2196F3); // Blue, for informational messages and icons
+
+  // Neutral shades
+  static const Color black = Color(0xFF000000); // Black, for text and icons
+  static const Color white =
+      Color(0xFFFFFFFF); // White, for text and icons on dark backgrounds
+  static const Color gray = Color(
+      0xFF9E9E9E); // Medium grey, for placeholder text and unselected icons
+  static const Color grayLight =
+      Color(0xFFE0E0E0); // Light grey, for backgrounds and disabled elements
+  static const Color grayDark =
+      Color(0xFF616161); // Dark grey, for text and icons on light backgrounds
+
+  // Additional colors
+  static const Color overlayDark =
+      Color(0x66000000); // Translucent black, for overlays and backdrops
+  static const Color overlayLight = Color(
+      0x66FFFFFF); // Translucent white, for overlays and backdrops in dark theme
+  static const Color highlightColor = Color(
+      0x66CDDC39); // Translucent lime green, for highlighting selected items

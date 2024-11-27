@@ -31,21 +31,21 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => NavigationProvider(),
       child: MyApp(
-          // portfolioService: portfolioService,
-          // portfolioProvider: portfolioProvider,
+          portfolioService: portfolioService,
+          portfolioProvider: portfolioProvider,
           ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  // final PortfolioService portfolioService;
-  // final PortfolioProvider portfolioProvider;
+  final PortfolioService portfolioService;
+  final PortfolioProvider portfolioProvider;
 
   const MyApp({
     super.key,
-    // required this.portfolioService,
-    // required this.portfolioProvider,
+    required this.portfolioService,
+    required this.portfolioProvider,
   });
 
   @override

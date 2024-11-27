@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:my_portfolio/common/widgets/mesh_gradient.dart';
 import 'package:my_portfolio/features/authentication/controllers/navigation_index.dart';
 import 'package:my_portfolio/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
         theme: CustomAppTheme.lightTheme,
         darkTheme: CustomAppTheme.darkTheme,
         themeMode: ThemeMode.dark,
-        home: Scaffold(body: MeshGradientBackground(child: Text('Hello'))),
+        home: Scaffold(body: Text('Hello')),
       ),
     );
   }

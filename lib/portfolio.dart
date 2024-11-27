@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_portfolio/common/widgets/error.dart';
-import 'package:my_portfolio/features/authentication/controllers/navigation_index.dart';
 import 'package:my_portfolio/features/authentication/controllers/portfolio_provider.dart';
-import 'package:my_portfolio/features/authentication/screens/body/body.dart';
 import 'package:my_portfolio/features/authentication/screens/header/header.dart';
 import 'package:my_portfolio/features/authentication/screens/loading/loading_screen.dart';
 import 'package:provider/provider.dart';
@@ -156,12 +154,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                             child: Column(
                               children: [
                                 HeaderSection(portfolio: portfolio),
-                                AnimatedBodyContainer(
-                                  portfolio: portfolio,
-                                  selectedIndex:
-                                      Provider.of<NavigationProvider>(context)
-                                          .selectedIndex,
-                                ),
+                               Text('Body')
                               ],
                             ),
                           ),

@@ -6,6 +6,7 @@ import 'package:my_portfolio/common/widgets/mesh_gradient.dart';
 import 'package:my_portfolio/data/services/portfolio_service.dart';
 import 'package:my_portfolio/features/authentication/controllers/navigation_index.dart';
 import 'package:my_portfolio/features/authentication/controllers/portfolio_provider.dart';
+import 'package:my_portfolio/portfolio.dart';
 import 'package:my_portfolio/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -31,9 +32,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => NavigationProvider(),
       child: MyApp(
-          portfolioService: portfolioService,
-          portfolioProvider: portfolioProvider,
-          ),
+        portfolioService: portfolioService,
+        portfolioProvider: portfolioProvider,
+      ),
     ),
   );
 }
@@ -53,12 +54,23 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
-      builder: (context, child) => GetMaterialApp(
-        title: 'Portfolio Website',
-        theme: CustomAppTheme.lightTheme,
-        darkTheme: CustomAppTheme.darkTheme,
-        themeMode: ThemeMode.dark,
-        home: Scaffold(body: MeshGradientBackground(child: Text('hello'))),
+      builder: (context, child) => MultiProvider(
+        providers: [
+          Provider<PortfolioService>.value(
+            value: portfolioService,
+          ),
+          ChangeNotifierProvider<PortfolioProvider>.value(
+            value: portfolioProvider,
+          ),
+        ],
+        child: GetMaterialApp(
+          title: 'Portfolio Website',
+          theme: CustomAppTheme.lightTheme,
+          darkTheme: CustomAppTheme.darkTheme,
+          themeMode: ThemeMode.dark,
+          home:
+              Scaffold(body: MeshGradientBackground(child: PortfolioScreen())),
+        ),
       ),
     );
   }

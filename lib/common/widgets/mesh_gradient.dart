@@ -28,33 +28,19 @@ class _MeshGradientBackgroundState extends State<MeshGradientBackground>
     with TickerProviderStateMixin {
   List<AnimationController> _controllers = [];
   List<Animation<double>> _animations = [];
+  bool _isInitialized = false; // Add this flag
+
   @override
   void initState() {
     super.initState();
+    _initializeControllers(); // Initialize immediately
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Initialize controllers here
-      _initializeControllers();
-
-      _animations = _controllers.map((controller) {
-        return Tween<double>(
-          begin: 0,
-          end: 2 * math.pi,
-        ).animate(CurvedAnimation(
-          parent: controller,
-          curve: Curves.easeInOutSine,
-        ));
-      }).toList();
-
-      // Staggered starts with varying speeds
-      for (var i = 0; i < _controllers.length; i++) {
-        Future.delayed(Duration(milliseconds: i * 300), () {
-          _controllers[i].repeat(reverse: i % 2 == 0);
-        });
-      }
-
+      _startAnimations(); // Start animations after frame
       if (mounted) {
-        setState(() {});
+        setState(() {
+          _isInitialized = true;
+        });
       }
     });
   }
@@ -69,19 +55,34 @@ class _MeshGradientBackgroundState extends State<MeshGradientBackground>
       ),
     );
 
-    // Rest of your initialization code
+    _animations = _controllers.map((controller) {
+      return Tween<double>(
+        begin: 0,
+        end: 2 * math.pi,
+      ).animate(CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInOutSine,
+      ));
+    }).toList();
   }
 
-  @override
-  void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
+  void _startAnimations() {
+    for (var i = 0; i < _controllers.length; i++) {
+      Future.delayed(Duration(milliseconds: i * 300), () {
+        if (mounted) {
+          _controllers[i].repeat(reverse: i % 2 == 0);
+        }
+      });
     }
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!_isInitialized) {
+      return Container(
+          color: widget.colors[0]); // Show a solid color while initializing
+    }
+
     return RepaintBoundary(
       child: Stack(
         children: [
@@ -101,6 +102,14 @@ class _MeshGradientBackgroundState extends State<MeshGradientBackground>
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 }
 

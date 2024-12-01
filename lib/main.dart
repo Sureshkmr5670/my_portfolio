@@ -1,18 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:json_theme/json_theme.dart';
 import 'package:my_portfolio/common/widgets/mesh_gradient.dart';
 import 'package:my_portfolio/data/services/portfolio_service.dart';
 import 'package:my_portfolio/features/authentication/controllers/navigation_index.dart';
 import 'package:my_portfolio/features/authentication/controllers/portfolio_provider.dart';
 import 'package:my_portfolio/portfolio.dart';
-import 'package:my_portfolio/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  // Ensure this is called only once
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load light and dark theme JSONs
+  final lightThemeStr = await rootBundle.loadString('assets/light_theme.json');
+  final darkThemeStr = await rootBundle.loadString('assets/dark_theme.json');
+
+  final lightThemeJson = jsonDecode(lightThemeStr);
+  final darkThemeJson = jsonDecode(darkThemeStr);
+
+  final lightTheme = ThemeDecoder.decodeThemeData(lightThemeJson)!;
+  final darkTheme = ThemeDecoder.decodeThemeData(darkThemeJson)!;
 
   final portfolioService = PortfolioService();
   final portfolioProvider =
@@ -34,6 +46,8 @@ void main() async {
       child: MyApp(
         portfolioService: portfolioService,
         portfolioProvider: portfolioProvider,
+        lightTheme: lightTheme,
+        darkTheme: darkTheme,
       ),
     ),
   );
@@ -42,11 +56,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   final PortfolioService portfolioService;
   final PortfolioProvider portfolioProvider;
+  final ThemeData lightTheme;
+  final ThemeData darkTheme;
 
   const MyApp({
     super.key,
     required this.portfolioService,
     required this.portfolioProvider,
+    required this.lightTheme,
+    required this.darkTheme,
   });
 
   @override
@@ -65,9 +83,9 @@ class MyApp extends StatelessWidget {
         ],
         child: GetMaterialApp(
           title: 'Portfolio Website',
-          theme: CustomAppTheme.lightTheme,
-          darkTheme: CustomAppTheme.darkTheme,
-          themeMode: ThemeMode.dark,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: ThemeMode.system, // Automatically switch based on system setting
           home:
               Scaffold(body: MeshGradientBackground(child: PortfolioScreen())),
         ),

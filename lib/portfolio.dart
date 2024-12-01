@@ -151,7 +151,8 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                             ),
                             child: Column(
                               children: [
-                                HeaderSection(portfolio: portfolio),
+                                HeaderSection(portfolio: portfolio
+                                ),
                                 SimpleBodyContainer(
                                   portfolio: portfolio,
                                   selectedIndex:

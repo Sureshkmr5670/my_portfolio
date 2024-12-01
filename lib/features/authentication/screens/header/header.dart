@@ -24,7 +24,7 @@ class _HeaderSectionState extends State<HeaderSection> {
     final navigationProvider = Provider.of<NavigationProvider>(context);
 
     return Padding(
-      padding: CustomPadding.horizontalXXL,
+      padding: CustomPadding.screenPadding,
       child: Container(
         height: DeviceUtils.getAppBarHeight(),
         child: Column(
@@ -43,7 +43,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                     children: [
                       Text(
                         navItems[index],
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       // Active Indicator
                       AnimatedContainer(

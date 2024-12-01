@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_portfolio/common/widgets/error.dart';
+import 'package:my_portfolio/features/authentication/controllers/navigation_index.dart';
 import 'package:my_portfolio/features/authentication/controllers/portfolio_provider.dart';
+import 'package:my_portfolio/features/authentication/screens/body/body.dart';
 import 'package:my_portfolio/features/authentication/screens/header/header.dart';
 import 'package:my_portfolio/features/authentication/screens/loading/loading_screen.dart';
 import 'package:provider/provider.dart';
@@ -79,38 +81,34 @@ class _PortfolioScreenState extends State<PortfolioScreen>
 
           return Stack(
             children: [
-              // Fullscreen Lottie Animation with Container
+              // Fullscreen Lottie Animation
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
                 opacity: _showBody ? 0.0 : 1.0,
-                child: Positioned.fill(
-                  child: Container(
-                    child: Center(
-                      child: Transform.translate(
-                        offset: Offset(0, _scroll * 0.5),
-                        child: LayoutBuilder(
-                          builder: (context, constraints) {
-                            double width = constraints.maxWidth;
-                            double height = constraints.maxHeight;
+                child: SizedBox.expand(
+                  child: Center(
+                    child: Transform.translate(
+                      offset: Offset(0, _scroll * 0.5),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          double width = constraints.maxWidth;
+                          double height = constraints.maxHeight;
+                          double dimension = width > height ? width : height;
 
-                            double dimension = width > height ? width : height;
-
-                            return SizedBox(
-                              width: dimension,
-                              height: dimension,
-                              child: LottieBuilder.asset(
-                                'assets/lottie/json/coding_coffee_cup.json',
-                                fit: BoxFit.contain,
-                              ),
-                            );
-                          },
-                        ),
+                          return SizedBox(
+                            width: dimension,
+                            height: dimension,
+                            child: LottieBuilder.asset(
+                              'assets/lottie/json/coding_coffee_cup.json',
+                              fit: BoxFit.contain,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
                 ),
               ),
-
               // Scrollable Content
               SingleChildScrollView(
                 controller: _scrollController,
@@ -154,7 +152,12 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                             child: Column(
                               children: [
                                 HeaderSection(portfolio: portfolio),
-                               Text('Body')
+                                SimpleBodyContainer(
+                                  portfolio: portfolio,
+                                  selectedIndex:
+                                      Provider.of<NavigationProvider>(context)
+                                          .selectedIndex,
+                                ),
                               ],
                             ),
                           ),
@@ -183,7 +186,6 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                       curve: Curves.easeInOut,
                     )),
                     child: Center(
-                      // Center the icon
                       child: Column(
                         children: [
                           const Text(

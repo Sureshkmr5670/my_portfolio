@@ -43,6 +43,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/jpg/
+    - assets/jpg/about/
     - assets/png/
     - assets/rive/
     - assets/lottie/json/

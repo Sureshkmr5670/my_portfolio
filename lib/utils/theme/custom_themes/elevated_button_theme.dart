@@ -28,6 +28,7 @@ class CustomElevatedButtonTheme {
 
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      
       elevation: 0,
       foregroundColor: CustomAppColors.dark.textPrimary,
       backgroundColor: CustomAppColors.dark.buttonPrimary,
@@ -37,7 +38,7 @@ class CustomElevatedButtonTheme {
       disabledForegroundColor: CustomAppColors.dark.gray,
       side: BorderSide(color: CustomAppColors.dark.primaryColor),
       padding:  EdgeInsets.symmetric(
-          vertical: CustomSizes.xl, horizontal: CustomSizes.xl),
+          vertical: CustomSizes.xs, horizontal: CustomSizes.xs),
       textStyle: TextStyle(
         fontSize: CustomSizes.fontSizeMd,
         color: CustomAppColors.dark.textPrimary,

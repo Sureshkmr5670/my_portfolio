@@ -14,7 +14,7 @@ class PortfolioService {
       firstName: 'Suresh',
       lastName: 'Kumar',
       role: 'Software Engineer',
-      summary: 'Experienced Flutter developer with 1+ years of experience...',
+      summary: 'Software Engineer with 1 year of experience in full-stack development, specializing in Flutter for web and mobile applications built with clean architecture. Proficient in developing APIs using Spring Boot and experienced in Microsoft Dynamics to create end-to-end solutions. Adept at integrating front-end and back-end components to deliver seamless and high-performance applications. Passionate about contributing to innovative projects and continuously enhancing technical expertise',
       skills: [
         SkillModel(
           name: 'Flutter',

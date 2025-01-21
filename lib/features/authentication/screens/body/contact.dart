@@ -74,20 +74,9 @@ class _ContactScreenState extends State<ContactScreen> {
               child: ListTile(
                 leading: const Icon(Icons.phone),
                 title: const Text('Phone'),
-                subtitle: const Text('+1 (123) 456-7890'),
+                subtitle: const Text('+918870026247'),
                 onTap: () {
                   // Add phone handling logic if required
-                },
-              ),
-            ),
-            SizedBox(
-              width: 300,
-              child: ListTile(
-                leading: const Icon(Icons.link),
-                title: const Text('Portfolio'),
-                subtitle: const Text('www.yourportfolio.com'),
-                onTap: () {
-                  // Add link handling logic if required
                 },
               ),
             ),

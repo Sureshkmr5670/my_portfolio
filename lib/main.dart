@@ -13,6 +13,7 @@ import 'package:my_portfolio/features/authentication/controllers/portfolio_provi
 import 'package:my_portfolio/portfolio.dart';
 import 'package:provider/provider.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

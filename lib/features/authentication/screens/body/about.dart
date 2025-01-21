@@ -28,7 +28,8 @@ class AboutSection extends StatelessWidget {
           child: GlassBox(
             width: screenWidth * 0.8,
             height: screenHeight * 0.7,
-            child: Row(
+            child: Flex(
+              direction: screenWidth < 800 ? Axis.vertical : Axis.horizontal,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(

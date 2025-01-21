@@ -11,8 +11,6 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
   final TextEditingController _messageController = TextEditingController();
   final String _emailAddress = 'sureshkmr5670@gmail.com';
-  final String _phoneNumber = '+918870026247';
-  final String _portfolioUrl = 'https://surekmr007.github.io/food-order/';
 
   Future<void> _sendEmail() async {
     final Uri emailUri = Uri(
@@ -20,30 +18,14 @@ class _ContactScreenState extends State<ContactScreen> {
       path: _emailAddress,
       query: 'body=${Uri.encodeComponent(_messageController.text)}',
     );
-    await _launchUrl(emailUri);
-  }
 
-  Future<void> _makePhoneCall() async {
-    final Uri phoneUri = Uri(
-      scheme: 'tel',
-      path: _phoneNumber,
-    );
-    await _launchUrl(phoneUri);
-  }
-
-  Future<void> _openPortfolio() async {
-    final Uri portfolioUri = Uri.parse(_portfolioUrl);
-    await _launchUrl(portfolioUri);
-  }
-
-  Future<void> _launchUrl(Uri uri) async {
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
     } else {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not launch ${uri.toString()}'),
+        const SnackBar(
+          content: Text('Could not launch email client'),
         ),
       );
     }
@@ -57,140 +39,100 @@ class _ContactScreenState extends State<ContactScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 40),
-                Text(
-                  'Contact Me',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'Feel free to reach out via the options below:',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 40),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buildContactItem(
-                          icon: Icons.email,
-                          title: 'Email',
-                          subtitle: _emailAddress,
-                          onTap: () => _launchUrl(Uri(
-                            scheme: 'mailto',
-                            path: _emailAddress,
-                          )),
-                        ),
-                        _buildContactItem(
-                          icon: Icons.phone,
-                          title: 'Phone',
-                          subtitle: _phoneNumber,
-                          onTap: _makePhoneCall,
-                        ),
-                        _buildContactItem(
-                          icon: Icons.link,
-                          title: 'Portfolio',
-                          subtitle: 'Visit Site',
-                          onTap: _openPortfolio,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 40),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Send me a message',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 16),
-                        TextField(
-                          controller: _messageController,
-                          maxLines: 5,
-                          decoration: InputDecoration(
-                            hintText: 'Type your message here...',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: _sendEmail,
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32,
-                              vertical: 16,
-                            ),
-                          ),
-                          child: const Text('Send Email'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContactItem({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, size: 32),
-            const SizedBox(height: 8),
             Text(
-              title,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                  ),
+              'Contact Me',
+              style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Feel free to reach out via the options below:',
+              style: Theme.of(context).textTheme.bodySmall,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: 300,
+              child: ListTile(
+                leading: const Icon(Icons.email),
+                title: const Text('Email'),
+                subtitle: Text(_emailAddress),
+                onTap: () {
+                  // Add email handling logic if required
+                },
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: ListTile(
+                leading: const Icon(Icons.phone),
+                title: const Text('Phone'),
+                subtitle: const Text('+918870026247'),
+                onTap: () {
+                  // Add phone handling logic if required
+                },
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: ListTile(
+                leading: const Icon(Icons.link),
+                title: const Text('Portfolio'),
+                subtitle: const Text('https://surekmr007.github.io/food-order/'),
+                onTap: () {
+                  // Add link handling logic if required
+                },
+              ),
+            ),
+            const SizedBox(height: 32),
+            Container(
+              width: 300,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Send me a message',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _messageController,
+                      maxLines: 5,
+                      decoration: const InputDecoration(
+                        hintText: 'Type your message here...',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: _sendEmail,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        child: Text('Send Email'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

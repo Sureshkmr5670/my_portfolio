@@ -5,6 +5,7 @@ import 'package:my_portfolio/features/authentication/models/portfolio/portfolio_
 import 'package:my_portfolio/utils/device/device_utility.dart';
 import 'package:my_portfolio/utils/theme/custom_styles/custom_padding.dart';
 import 'package:my_portfolio/utils/theme/custom_styles/sizes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutSection extends StatelessWidget {
   final PortfolioModel portfolio;
@@ -13,7 +14,18 @@ class AboutSection extends StatelessWidget {
     Key? key,
     required this.portfolio,
   }) : super(key: key);
+  Future<void> _downloadResume() async {
+    final url = 'https://drive.google.com/file/d/1-Mzk0Wk2J5lElBRz6KWG2atrOXihOFh0/view?usp=sharing'; // Replace with your actual resume URL
 
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication, // Opens in a browser or downloads if supported
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = DeviceUtils.getScreenWidth();
@@ -45,20 +57,26 @@ class AboutSection extends StatelessWidget {
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         Text(
-                          portfolio.role, 
+                          portfolio.role,
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 10),
                         Text(
                           portfolio.summary,
                           overflow: TextOverflow.visible,
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    height:
+                                        1.5, // Line height
+                                    letterSpacing:
+                                        1.2, // Letter spacing
+                                  ),
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: _downloadResume,
                           child: Text(
-                            'Say Hello!',
+                            'Get My Resume!',
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         )

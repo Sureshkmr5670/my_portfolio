@@ -45,7 +45,7 @@ class AboutSection extends StatelessWidget {
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         Text(
-                          portfolio.role,
+                          portfolio.role, 
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 10),

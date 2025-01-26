@@ -47,7 +47,7 @@ void main() async {
       child: MyApp(
         portfolioService: portfolioService,
         portfolioProvider: portfolioProvider,
-        lightTheme: lightTheme,
+        lightTheme: darkTheme,
         darkTheme: darkTheme,
       ),
     ),

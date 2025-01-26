@@ -42,7 +42,7 @@ class AboutSection extends StatelessWidget {
                       children: [
                         Text(
                           "Hello, I'm ${portfolio.firstName} ${portfolio.lastName}",
-                          style: Theme.of(context).textTheme.headlineSmall,
+                          style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         Text(
                           portfolio.role,
@@ -52,7 +52,7 @@ class AboutSection extends StatelessWidget {
                         Text(
                           portfolio.summary,
                           overflow: TextOverflow.visible,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
@@ -90,7 +90,7 @@ class AboutSection extends StatelessWidget {
                         }
 
                         return LottieBuilder.asset(
-                          'assets/lottie/json/coding_flutter_react.json',
+                          'assets/lottie/json/multiplatform_coding.json',
                           fit: BoxFit.contain,
                         );
                       },

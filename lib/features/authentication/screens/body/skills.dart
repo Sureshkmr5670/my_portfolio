@@ -198,7 +198,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               'Developed APIs for the "Collection" application, implementing secure role-based '
               'authentication using Spring Security, JWT, and MySQL. Delivered efficient backend '
               'solutions to handle complex business logic.',
-          image: const AssetImage(ImageStrings.Logo_java_springboot),
+          image: AssetImage(ImageStrings.Logo_java_springboot),
           color: Colors.orange,
         );
       case 3:
@@ -211,7 +211,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               'with PowerApps Canvas using Power Fx language, designing efficient APIs through Power Automate, '
               'and managing complex workflows within the Dynamics ecosystem. Skilled in Model-Driven App '
               'development and flow automation for scalable solutions.',
-          image: const AssetImage(ImageStrings.Logo_java_springboot),
+          image: AssetImage(ImageStrings.Logo_powerapps_powerautomate),
           color: Colors.purple,
         );
       default:

@@ -211,7 +211,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               'with PowerApps Canvas using Power Fx language, designing efficient APIs through Power Automate, '
               'and managing complex workflows within the Dynamics ecosystem. Skilled in Model-Driven App '
               'development and flow automation for scalable solutions.',
-          image: AssetImage(ImageStrings.Logo_powerapps_powerautomate),
+          image: const AssetImage(ImageStrings.Logo_java_springboot),
           color: Colors.purple,
         );
       default:

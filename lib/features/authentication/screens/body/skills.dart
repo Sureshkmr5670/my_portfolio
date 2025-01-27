@@ -96,11 +96,14 @@ class _SkillsSectionState extends State<SkillsSection> {
               : isTabletDevice
                   ? MediaQuery.of(context).size.width * 0.8
                   : (isHovered ? 400 : 300),
-          height: isMobileDevice
-              ? 400
-              : isTabletDevice
-                  ? 400
-                  : (isHovered ? 500 : 350),
+          // Remove fixed height and use constraints instead
+          constraints: BoxConstraints(
+            minHeight: isMobileDevice
+                ? 400
+                : isTabletDevice
+                    ? 400
+                    : (isHovered ? 500 : 350),
+          ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
@@ -112,40 +115,43 @@ class _SkillsSectionState extends State<SkillsSection> {
               ),
             ],
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(image: skill.image, width: 400, height: 100),
-              const SizedBox(height: 16),
-              Text(
-                skill.title,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: skill.color,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Add this
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: skill.image,
+                  width: 400,
+                  height: 100,
+                  fit: BoxFit.contain,
                 ),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
+                const SizedBox(height: 16),
+                Text(
+                  skill.title,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: skill.color,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
                   skill.description,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16),
                 ),
-              ),
-              if (isHovered || isMobileDevice || isTabletDevice) ...[
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
+                if (isHovered || isMobileDevice || isTabletDevice) ...[
+                  const SizedBox(height: 16),
+                  Text(
                     skill.detailedDescription,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                   ),
-                ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),

@@ -64,6 +64,11 @@ class AboutSection extends StatelessWidget {
                       fit: BoxFit.contain,
                       width: isMobile ? screenWidth * 0.6 : null,
                       height: isMobile ? screenHeight * 0.4 : null,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child: Text('Error loading animation'),
+                        );
+                      },
                     ),
                   ),
                 ),

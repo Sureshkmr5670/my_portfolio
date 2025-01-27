@@ -136,35 +136,41 @@ class _ContactScreenState extends State<ContactScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: _sendEmail,
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 24,
                           vertical: 12,
                         ),
-                        child: Text('Send Email'),
+                        child: Text(
+                          'Send Email',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.email),
+                  icon: const Icon(
+                    Icons.email,
+                    color: Colors.white,
+                  ),
                   onPressed: _sendEmail,
                   tooltip: 'Email',
                 ),
                 IconButton(
-                  icon: const Icon(Icons.phone),
+                  icon: const Icon(Icons.phone, color: Colors.white),
                   onPressed: _makePhoneCall,
                   tooltip: 'Phone',
                 ),
                 IconButton(
-                  icon: const Icon(Icons.link),
+                  icon: const Icon(Icons.link, color: Colors.white),
                   onPressed: _launchPortfolio,
                   tooltip: 'Portfolio',
                 ),

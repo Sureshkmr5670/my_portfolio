@@ -121,11 +121,14 @@ class _SkillsSectionState extends State<SkillsSection> {
               mainAxisSize: MainAxisSize.min, // Add this
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
-                  image: skill.image,
-                  width: 400,
-                  height: 100,
-                  fit: BoxFit.contain,
+                Container(
+                  // color: Colors.brown,
+                  child: Image(
+                    image: skill.image,
+                    width: 500,
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text(
